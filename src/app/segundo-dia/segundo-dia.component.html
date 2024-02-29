@@ -1,0 +1,152 @@
+<p>segundo-dia works!</p>
+<div
+    class="card"
+    style="width: 18rem;"
+>
+    <img
+        src="{{variable}}"
+        class="card-img-top"
+        alt="chitoge-my-beloved"
+    >
+    <div class="card-body">
+        <h5 class="card-title">Best Waifu</h5>
+        <p class="card-text">Mi novia chitoge kirisaki pero del mal</p>
+        <button
+            class="btn btn-primary"
+            (click)="clickButton('https://media.tenor.com/wM6TaxvmaOoAAAAM/chitoge-kirisaki-nisekoi.gif')"
+        >
+            Best Waifu
+        </button>
+    </div>
+</div>
+<!-- <button
+            class="btn btn-primary"
+            (click)="clickButton('hola')"
+        >
+            Best Waifu
+        </button> -->
+<div>
+    <h3>Boton normal</h3>
+    <button
+        class="btn btn-primary"
+        (click)="clickButton('danger')"
+    >
+        Best Waifu
+    </button>
+</div>
+<div>
+    <h3>Boton Terneario</h3>
+    <button
+        [class]="variable === 'success' ? 'btn btn-success' : 'btn btn-danger' "
+        (click)="clickButton('success')"
+    >
+        Picale w
+    </button>
+</div>
+<div>
+    <h3>Boton ngClass</h3>
+    <button
+        [ngClass]="{'btn btn-dark': variable === 'dark'}"
+        (click)="clickButton('dark')"
+    >
+        dark
+    </button>
+</div>
+<!-- <div>
+    <h3>Boton usando ngclass</h3>
+    <button
+        class="btn btn-success"
+        [ngClass]="{'btn-success' : variable === 'btn-class'}"
+    >
+        success
+    </button>
+</div> -->
+
+
+
+<div *ngFor="let itemuser of user">
+    <div>{{itemuser.name}}</div>
+    <div>{{itemuser.descripcion}}</div>
+</div>
+
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            *ngFor="let itemuser of user"
+            class="table-active"
+        >
+
+
+
+            <td>{{itemuser.name}}</td>
+            <td>{{itemuser.descripcion}}</td>
+        </tr>
+
+
+
+    </tbody>
+</table>
+<div>
+    <h3>Inputs no reactivos</h3>
+    <span>nombre</span>
+    <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="name"
+    >
+    <span>descripcion</span>
+    <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="descripcion"
+    >
+    <button
+        class="btn btn-danger"
+        (click)="submitForm2()"
+    >
+        Submit
+    </button>
+</div>
+<div class="card bg-dark text-white">
+    <h3>El nombre es: {{name}}</h3>
+    <div class="card-body">
+        <small>{{descripcion}}</small>
+    </div>
+</div>
+<div>
+    <h3>Inputs reactivos</h3>
+    <form [formGroup]="formulariouser">
+        <span>Insertar nombre</span>
+        <input
+            type="text"
+            class="text-control"
+            formControlName="name"
+        >
+        <span>Insertar descripcion</span>
+        <input
+            type="text"
+            class="text-control"
+            formControlName="descripcion"
+        ><br><br>
+        <button
+            class="btn btn-primary"
+            (click)="submitForm1()"
+        >
+            Mostrar los valores en consola y bloquear name y descripcion
+        </button>
+        <hr>
+    </form>
+
+
+</div>

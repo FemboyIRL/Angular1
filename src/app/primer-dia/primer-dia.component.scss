@@ -1,0 +1,24 @@
+.card {
+    background-color: #0832;
+    position: fixed;
+    height: auto;
+    left: 60rem;
+    bottom: 0rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    video{
+        height: 400px;
+        width: 300px;
+    }
+}
+
+#Crunch{
+    height: 400px;
+    width: 300px;
+}
+
+.card:first-child {
+    background-color: #f2f2f2;
+    position: fixed;
+    left: 20rem;
+    bottom: 0rem;
+}

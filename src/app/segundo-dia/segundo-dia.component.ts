@@ -6,7 +6,7 @@ import { log } from 'console';
 @Component({
   selector: 'app-segundo-dia',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './segundo-dia.component.html',
   styleUrl: './segundo-dia.component.scss'
 })
@@ -16,7 +16,7 @@ export class SegundoDiaComponent {
   name = ''
   descripcion = ''
 
-  formulariouser:FormGroup = new FormGroup({
+  formulariouser: FormGroup = new FormGroup({
     name: new FormControl(''),
     descripcion: new FormControl('')
   })
@@ -39,7 +39,7 @@ export class SegundoDiaComponent {
     }
 
   ]
-  constructor(){
+  constructor() {
   }
   ngOnInit() {
   }
@@ -48,16 +48,15 @@ export class SegundoDiaComponent {
   }
   ngOnDestroy() {
   }
-  clickButton(text:string){
+  clickButton(text: string) {
     this.variable = text
   }
-  submitForm1(){
+  submitForm1() {
     this.formulariouser.controls['name'].disable()
     this.formulariouser.controls['descripcion'].disable()
-
     console.log(this.formulariouser.value)
   }
-  submitForm2(){
-    console.log("El nombre es " + this.name + " y la descripcion es" + this.descripcion   )
+  submitForm2() {
+    console.log("El nombre es " + this.name + " y la descripcion es" + this.descripcion)
   }
 }

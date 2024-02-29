@@ -1,0 +1,76 @@
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f2f2f2;
+}
+
+h1{
+	font-family: 'Franklin Gothic Medium';
+}
+
+button {
+	font-size: xx-large;
+	background-color: unset;
+	padding: 1rem;
+	margin: 10px 20px;
+	transition: 100ms ease-in-out;
+}
+
+
+button:hover{
+	transform: scale(1.1);
+}
+
+#Like:hover, #contenedorLikeMichis{
+	background-color: #00ff2a23;
+}
+
+#Dislike:hover, #contenedorDislikeMichis{
+	background-color: #79000023;
+
+}
+.escondido{
+	display: none !important;
+}
+
+#fotoPrincipalContainer{
+	height: 500px;
+}
+
+ #fotoPrincipalContainer img {
+ 	height: 500px;
+ }
+
+.contenedorMichis{
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2rem;
+	border-radius: 50px;
+	max-width: 70vw;
+	margin: 10px 0px;
+
+}
+
+.contenedorMichis img{
+	height: 100px;
+}
+
+#spinner {
+	border: 16px solid #f3f3f3;
+	border-top: 16px solid #3498db;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	margin-top: 180px;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin{
+	0%{
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

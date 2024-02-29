@@ -1,7 +1,7 @@
 	<h1>Te gusta este michi?</h1>
 	<div id="fotoPrincipalContainer">
 	<div id="spinner"></div>	
-	<img src="#" id="michiActual" alt="Michito">
+	<img *ngFor="let item of users" [src]="item.url" id="michiActual" alt="Michito">
 	</div>
 	<div class="btn btn-dark">	
 		<button id="Like">👍</button>

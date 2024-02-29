@@ -1,1 +1,43 @@
 <p>tercer-dia works!</p>
+<h1>{{service.correob}}</h1>
+<div class="input-group mb-3">
+    <span
+        class="input-group-text"
+        id="basic-addon1"
+    >
+        &#64;
+    </span>
+    <input
+        type="text"
+        [(ngModel)]="correo"
+        class="form-control"
+    >
+</div>
+
+
+<button
+    class="btn btn-primary"
+    (click)="service.onClickButton(correo)"
+>
+    Click para activar el servicio
+</button>
+<div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let itemuser of users let i=index">
+        <th>{{i + 1}}</th>
+        <td>{{editarText(itemuser.title)}}</td>
+        <td>{{editarText(itemuser.body)}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

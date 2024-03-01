@@ -15,7 +15,7 @@ export class RandomComponent {
    users: any = []
 
   constructor(public service: MichisService) {
-
+    
   }
   ngOnInit() {
     this.service.nuevoMichi().subscribe(resp => {

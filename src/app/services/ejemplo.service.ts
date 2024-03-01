@@ -1,26 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../tercer-dia/tercer-dia.component';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class EjemploService {
-  correo = "";
-  correob = "Ingresa tu correo";
   API_URL = 'https://jsonplaceholder.typicode.com/'
-  constructor(private http: HttpClient) {
 
+
+  constructor(private http: HttpClient) {
   }
 
-  obtenerlista() {
+  obtenerlista(): Observable<any> {
     return this.http.get(`${this.API_URL}posts`, {
       headers: {
         'content-type': 'application/json;'
       }
     })
   }
-  onClickButton(text: string) {
-    console.log(text);
-    this.correo = text
+  MetodoPost(datos: []): Observable<any> {
+    return this.http.post(`${this.API_URL}posts`, {
+      headers: {
+        'content-type': 'application/json;'
+      },
+    })
+  }
+
+  MetodoPut(id: number): Observable<any> {
+    return this.http.put<any>(`${this.API_URL}posts/1`, {})
+  }
+  MetodoDelete(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.API_URL}posts/${id}`)
   }
 }

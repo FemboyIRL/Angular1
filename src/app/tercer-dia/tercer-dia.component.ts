@@ -19,13 +19,6 @@ export interface User {
 export class TercerDiaComponent {
 
   users: User[] = []
-  datos = {
-    id: 1,
-    title: 'foo',
-    body: 'bar',
-  } as any;
-
-  
 
   formularioUser: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -37,7 +30,7 @@ export class TercerDiaComponent {
 
   }
 
-  ngOnInit() {
+  mostrarLista() {
     this.service.obtenerlista().subscribe(resp => {
       console.log(resp)
       this.users = resp;
@@ -45,10 +38,11 @@ export class TercerDiaComponent {
         id: [''],
         title: [''],
         body: [''],
+        userId: ['']
       })
     })
   }
-  enviarDatos() {
+  enviarDatosAbajo() {
     const formData = this.formularioUser.value;
     this.service.MetodoPost(formData).subscribe(resp => {
       console.log('Datos enviados:', resp);
@@ -57,6 +51,16 @@ export class TercerDiaComponent {
       this.formularioUser.reset();
     })
   }
+  enviarDatosArriba() {
+    const formData = this.formularioUser.value;
+    this.service.MetodoPost(formData).subscribe(resp => {
+      console.log('Datos enviados:', resp);
+      const newUser = { id: resp.id, title: formData.title, body: formData.body, userId: formData.userId };
+      this.users.unshift(newUser);
+      this.formularioUser.reset();
+    })
+  }
+
   borrarDatos(id: number) {
     this.service.MetodoDelete(id).subscribe(resp => {
       console.log('Datos eliminados:', resp);
@@ -71,8 +75,25 @@ export class TercerDiaComponent {
   }
   parchearDatos(id: number) {
     const formData = this.formularioUser.value;
-    this.service.MetodoPut(formData).subscribe(resp => {
-      console.log(resp) 
-    })
+    this.service.MetodoPut(id, formData).subscribe(resp => {
+      console.log("datos editados", resp);
+      const editUser = {
+        id: resp.id, title: formData.title, body: formData.body, userId: formData.userId
+      }
+      const index = this.users.findIndex(user => user.id === id);
+      if (index !== -1) {
+        this.users[index] = editUser;
+        console.log("Arreglo users actualizado:", this.users);
+        this.formularioUser.reset();
+      } else {
+        console.error("No se encontró el usuario en el arreglo 'users'");
+        this.formularioUser.reset();
+      }
+    },
+      error => {
+        console.error("Error al editar datos:", error);
+      });
   }
 }
+
+

@@ -29,8 +29,8 @@ export class EjemploService {
     })
   }
 
-  MetodoPut(id: number): Observable<any> {
-    return this.http.put<any>(`${this.API_URL}posts/1`, {})
+  MetodoPut(id: number, datos: User): Observable<any> {
+    return this.http.put<any>(`${this.API_URL}posts/1`, datos)
   }
   MetodoDelete(id: number): Observable<any> {
     return this.http.delete<any>(`${this.API_URL}posts/${id}`)

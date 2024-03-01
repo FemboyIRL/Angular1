@@ -1,0 +1,161 @@
+<div class="barranav">
+    <header>
+        <h1>Proyecto Final</h1>
+        <!-- llamar al modal -->
+        <button
+            type="button"
+            class="btn btn-outline-dark btn-lg"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+        >
+            Crear un nuevo usuario
+        </button>
+    </header>
+</div>
+<!-- Modal -->
+        <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1
+                            class="modal-title fs-5"
+                            id="exampleModalLabel"
+                        >
+                            {{userEdit.index >= 0 ? 'Editar' : 'Agregar nuevo' }} Usuario
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="formularioUser">
+                            <span>
+                                Nombre
+                                <br>
+                            </span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                formControlName="Nombre"
+                            >
+                            <br>
+                            <span>
+                                Apellidos
+                                <br>
+                            </span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                formControlName="Apellidos"
+                            >
+                            <br>
+                            <span>
+                                Descripcion
+                                <br>
+                            </span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                formControlName="Descripcion"
+                            >
+                            <br>
+                            <span>
+                                Edad
+                                <br>
+                            </span>
+                            <input
+                                type="number"
+                                class="form-control"
+                                formControlName="Edad"
+                            >
+                            <hr>
+                            <div class="my-google-map">
+                                <google-map (mapClick)="obtainCoords($event)" width="100%" [options]="mapOptions">
+                                    <map-marker [position]="position"></map-marker>
+                                </google-map>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            (click)="submitForm()"
+                            data-bs-dismiss="modal"
+                        >
+                            Guardar Usuario
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+
+<hr>
+<!-- cuerpo de la pagina -->
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <div class="cards">
+            <div style="width: 500px;">
+                <div
+                    *ngFor="let itemuser of users; let i=index"
+                    class="card border-dark mb-3"
+                >
+                    <div class="card-header">
+                        Nombre: {{ itemuser.Nombre }} {{itemuser.Apellidos}}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Descripcion: {{itemuser.Descripcion}}</h5>
+                        <div class="botones">
+                            <button
+                                (click)="borrarUsuario(i)"
+                                class="btn btn-outline-dark"
+                                id="Delete"
+                            >
+                            <i class="bi bi-trash"></i>
+                            </button>
+                            <button
+                                type="button"
+                                (click)="enviarDatos(itemuser, i)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                class="btn btn-outline-dark"
+                            >
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button type="button" 
+                            (click)="centrarMapa(itemuser)" [ngClass]="{'text-danger': itemuser.id === userEdit.index}"
+                            class="btn btn-outline-dark">
+                            <i class="bi bi-eye"></i>   
+                            </button>
+                        </div>
+                        <p class="card-text">Edad: {{ itemuser.Edad }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-google-map">
+            <google-map width="700px" height="700px" [options]="mapOptions">
+                <map-marker *ngFor="let marker of users" [position]="marker.position"></map-marker>
+            </google-map>
+        </div>
+    </div>
+</div>

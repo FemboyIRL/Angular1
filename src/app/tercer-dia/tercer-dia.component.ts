@@ -17,7 +17,7 @@ export interface User {
   styleUrl: './tercer-dia.component.scss'
 })
 export class TercerDiaComponent {
-
+  selectedUser: any
   users: User[] = []
 
   formularioUser: FormGroup = new FormGroup({
@@ -53,10 +53,13 @@ export class TercerDiaComponent {
   }
   enviarDatosArriba() {
     const formData = this.formularioUser.value;
+
     this.service.MetodoPost(formData).subscribe(resp => {
       console.log('Datos enviados:', resp);
       const newUser = { id: resp.id, title: formData.title, body: formData.body, userId: formData.userId };
       this.users.unshift(newUser);
+      console.log(this.users);
+      
       this.formularioUser.reset();
     })
   }
@@ -75,12 +78,21 @@ export class TercerDiaComponent {
   }
   parchearDatos(id: number) {
     const formData = this.formularioUser.value;
+    console.log(id);
+    
+
     this.service.MetodoPut(id, formData).subscribe(resp => {
       console.log("datos editados", resp);
+
       const editUser = {
-        id: resp.id, title: formData.title, body: formData.body, userId: formData.userId
+        id: id, title: formData.title, body: formData.body, userId: formData.userId
       }
       const index = this.users.findIndex(user => user.id === id);
+
+      console.log(index);
+      
+
+
       if (index !== -1) {
         this.users[index] = editUser;
         console.log("Arreglo users actualizado:", this.users);
@@ -94,6 +106,10 @@ export class TercerDiaComponent {
         console.error("Error al editar datos:", error);
       });
   }
+  editarUsuario(Usuario: any){
+  this.selectedUser = Usuario; 
+  }
 }
+
 
 
